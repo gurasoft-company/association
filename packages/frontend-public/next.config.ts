@@ -1,12 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ✅ output standalone pour Docker
   output: 'standalone',
-  
-  // ✅ Désactiver le télémetry
   telemetry: false,
 
-  // ✅ DÉSACTIVER TURBOPACK
   experimental: {
     turbo: false,
   },
@@ -16,32 +12,20 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'images.pexels.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '5000',
-        pathname: '/uploads/**',
       },
       {
         protocol: 'https',
         hostname: 'association-backend-ftnr.onrender.com',
-        port: '',
-        pathname: '/uploads/**',
       },
     ],
   },
   
-  // ✅ Proxy pour l'API
   async rewrites() {
+    // ✅ Utiliser l'URL complète du backend sur Render
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://association-backend-ftnr.onrender.com';
     return [
       {
