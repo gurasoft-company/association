@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================
+   ✅ ANIMATIONS POUR LE HEADER (AJOUTER CECI)
+   ========================================== */
+
+/* Menu mobile - slide down */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+/* ==========================================
+   ✅ UTILITAIRES RESPONSIVE (AJOUTER CECI)
+   ========================================== */
+
+/* Pour cacher le texte du logo sur très petits écrans */
+@media (max-width: 450px) {
+  .xs\:block {
+    display: none !important;
+  }
+}
+
+/* ==========================================
+   ✅ ANIMATIONS OPTIONNELLES (AJOUTER CECI)
+   ========================================== */
+
+/* Animation fade-in-up pour les sections */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Animation pulse lente */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ==========================================
+   ✅ STYLES DE BASE (AJOUTER CECI)
+   ========================================== */
+
+/* Anti-aliasing pour meilleur rendu texte */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hauteur minimale pour les pages */
+.min-h-screen-custom {
+  min-height: 100vh;
+  min-height: 100dvh; /* Pour les navigateurs mobiles modernes */
+}
+
+/* Scrollbar personnalisée (optionnel) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #16a34a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #15803d;
+}

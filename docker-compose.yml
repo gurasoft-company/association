@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./packages/backend
+      dockerfile: Dockerfile
+    container_name: association_backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./packages/backend/association.db:/app/association.db
+      - ./packages/backend/uploads:/app/uploads
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+    networks:
+      - association_network
+
+  frontend-admin:
+    build:
+      context: ./packages/frontend-admin
+      dockerfile: Dockerfile
+    container_name: association_frontend_admin
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - association_network
+
+  frontend-public:
+    build:
+      context: ./packages/frontend-public
+      dockerfile: Dockerfile
+    container_name: association_frontend_public
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://backend:5000
+      - NEXT_TELEMETRY_DISABLED=1
+    depends_on:
+      - backend
+    networks:
+      - association_network
+
+networks:
+  association_network:
+    driver: bridge
