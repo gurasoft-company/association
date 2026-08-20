@@ -9,7 +9,8 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci --only=production && npm cache clean --force
+# ✅ Remplacer npm ci par npm install
+RUN npm install && npm cache clean --force
 
 # ============================================
 #  ÉTAPE 2 : BUILDER
@@ -25,8 +26,8 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
+# ✅ Une seule commande de build avec webpack
 RUN npm run build -- --webpack
-RUN npm run build:docker
 
 # ============================================
 #  ÉTAPE 3 : PRODUCTION
