@@ -26,6 +26,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
 RUN npm run build -- --webpack
+RUN npm run build:docker
 
 # ============================================
 #  ÉTAPE 3 : PRODUCTION
