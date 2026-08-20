@@ -1,10 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ✅ AJOUTER : output standalone pour Docker
+  // ✅ output standalone pour Docker
   output: 'standalone',
   
-  // ✅ AJOUTER : désactiver le télémetry
+  // ✅ Désactiver le télémetry
   telemetry: false,
+
+  // ✅ DÉSACTIVER TURBOPACK
+  experimental: {
+    turbo: false,
+  },
   
   images: {
     remotePatterns: [
@@ -20,14 +25,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
-      // ✅ AJOUTER pour les uploads en dev local
       {
         protocol: 'http',
         hostname: 'localhost',
         port: '5000',
         pathname: '/uploads/**',
       },
-      // ✅ AJOUTER pour les uploads dans Docker
       {
         protocol: 'http',
         hostname: 'association_backend',
@@ -43,7 +46,7 @@ const nextConfig = {
     ],
   },
   
-  // ✅ AJOUTER : Proxy pour l'API
+  // ✅ Proxy pour l'API
   async rewrites() {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://association_backend:5000';
     return [
