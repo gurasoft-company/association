@@ -32,15 +32,9 @@ const nextConfig = {
         pathname: '/uploads/**',
       },
       {
-        protocol: 'http',
-        hostname: 'association_backend',
-        port: '5000',
-        pathname: '/uploads/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'backend',
-        port: '5000',
+        protocol: 'https',
+        hostname: 'association-backend-ftnr.onrender.com',
+        port: '',
         pathname: '/uploads/**',
       },
     ],
@@ -48,7 +42,7 @@ const nextConfig = {
   
   // ✅ Proxy pour l'API
   async rewrites() {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://association_backend:5000';
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://association-backend-ftnr.onrender.com';
     return [
       {
         source: '/api/:path*',
