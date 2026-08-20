@@ -24,17 +24,16 @@ const nextConfig = {
     ],
   },
   
+  // ✅ Proxy vers le backend sur Render
   async rewrites() {
-    // ✅ Utiliser l'URL complète du backend sur Render
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://association-backend-ftnr.onrender.com';
     return [
       {
         source: '/api/:path*',
-        destination: `${apiUrl}/api/:path*`,
+        destination: 'https://association-backend-ftnr.onrender.com/api/:path*',
       },
       {
         source: '/uploads/:path*',
-        destination: `${apiUrl}/uploads/:path*`,
+        destination: 'https://association-backend-ftnr.onrender.com/uploads/:path*',
       },
     ];
   },
