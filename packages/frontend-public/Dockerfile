@@ -25,7 +25,7 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
-RUN npm run build
+RUN npm run build -- --webpack
 
 # ============================================
 #  ÉTAPE 3 : PRODUCTION
