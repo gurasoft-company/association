@@ -5,6 +5,7 @@ import { Projet, ImageProjet } from '../../../types';
 import api from '../../../services/api';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getImageUrl } from '../../../public/config/api';
 
 export default function Projets() {
   const [projets, setProjets] = useState<Projet[]>([]);
@@ -40,14 +41,11 @@ export default function Projets() {
     fetchProjets();
   }, []);
 
-  const getImageUrl = (projetId: number): string => {
+  const getImageUrlForProjet = (projetId: number): string => {
     const images = imagesProjets[projetId] || [];
     if (images.length > 0) {
-      const url = images[0].url;
-      if (url.startsWith('http://') || url.startsWith('https://')) {
-        return url;
-      }
-      return `http://localhost:5000${url.startsWith('/') ? '' : '/'}${url}`;
+      // ✅ Utiliser la fonction centralisée
+      return getImageUrl(images[0].url);
     }
     return 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop&crop=center';
   };
@@ -114,7 +112,7 @@ export default function Projets() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projets.map((projet) => {
-            const imageUrl = getImageUrl(projet.idProjet);
+            const imageUrl = getImageUrlForProjet(projet.idProjet);
             return (
               <div
                 key={projet.idProjet}
