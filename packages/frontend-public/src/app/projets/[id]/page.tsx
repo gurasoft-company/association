@@ -12,6 +12,7 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/autoplay';
 import { formatDate } from '../../../utils/dateUtils';
+import { getImageUrl } from '../../../../public/config/api';
 
 export default function ProjetDetail() {
   const params = useParams();
@@ -57,12 +58,8 @@ export default function ProjetDetail() {
 
   const getCarouselImages = () => {
     if (images.length > 0) {
-      const imageUrls = images.map(img => {
-        if (img.url.startsWith('http://') || img.url.startsWith('https://')) {
-          return img.url;
-        }
-        return `http://localhost:5000${img.url.startsWith('/') ? '' : '/'}${img.url}`;
-      });
+      // ✅ Utiliser la fonction centralisée getImageUrl
+      const imageUrls = images.map(img => getImageUrl(img.url));
       
       if (imageUrls.length < 3) {
         const duplicated = [];
