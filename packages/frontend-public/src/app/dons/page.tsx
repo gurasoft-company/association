@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import api from '../../../services/api';
 import { Projet, Besoin, Don } from '../../../types';
+import { API_BASE_URL } from '../../../public/config/api';
 
 const fakeDonors = [
   { id: 1, prenom: 'Marie', nom: 'Dupont', montant: 50 },
