@@ -34,19 +34,7 @@ const nextConfig = {
     ],
   },
   
-  // ✅ Proxy vers le backend sur Render
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'https://association-backend-ftnr.onrender.com/api/:path*',
-      },
-      {
-        source: '/uploads/:path*',
-        destination: 'https://association-backend-ftnr.onrender.com/uploads/:path*',
-      },
-    ];
-  },
+  
 };
 
 module.exports = nextConfig;
