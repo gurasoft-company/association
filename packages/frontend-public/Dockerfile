@@ -40,14 +40,8 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# ✅ Copier le standalone
 COPY --from=builder /app/.next/standalone ./
-
-# ✅ Copier le static
 COPY --from=builder /app/.next/static ./.next/static
-
-# ❌ SUPPRIMER CETTE LIGNE
-# COPY --from=builder /app/public ./public
 
 RUN chown -R nextjs:nodejs /app
 
