@@ -7,7 +7,7 @@ import { Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/autoplay';
-import { API_BASE_URL } from '../../../public/config/api';
+import { API_BASE_URL } from '../../../config/api';
 
 export default function Vision() {
   return (

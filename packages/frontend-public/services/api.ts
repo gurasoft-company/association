@@ -1,10 +1,8 @@
 import axios from 'axios';
-
-// ✅ Utiliser l'URL complète du backend Render
-const API_URL = 'https://association-backend-ftnr.onrender.com/api';
+import { API_BASE_URL } from '../config/api';
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: `${API_BASE_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   },

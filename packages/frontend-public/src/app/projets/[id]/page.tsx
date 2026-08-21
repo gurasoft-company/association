@@ -12,7 +12,7 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/autoplay';
 import { formatDate } from '../../../utils/dateUtils';
-import { getImageUrl } from '../../../../public/config/api';
+import { getImageUrl } from '../../../../config/api';
 
 export default function ProjetDetail() {
   const params = useParams();

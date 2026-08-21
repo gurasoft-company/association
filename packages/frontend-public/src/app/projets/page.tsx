@@ -5,7 +5,7 @@ import { Projet, ImageProjet } from '../../../types';
 import api from '../../../services/api';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getImageUrl } from '../../../public/config/api';
+import { getImageUrl } from '../../../config/api';
 
 export default function Projets() {
   const [projets, setProjets] = useState<Projet[]>([]);
