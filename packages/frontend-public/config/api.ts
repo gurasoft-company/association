@@ -1,4 +1,5 @@
 // Configuration centralisée de l'API
+// ✅ URL en dur pour Render
 export const API_BASE_URL = 'https://association-backend-ftnr.onrender.com';
 
 export const getImageUrl = (url: string): string => {
