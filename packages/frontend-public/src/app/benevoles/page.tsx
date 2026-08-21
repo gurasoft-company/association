@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import api from '../../../services/api';
 import { Projet } from '../../../types';
+import { API_BASE_URL } from '../../../public/config/api';
 
 export default function Benevoles() {
   const [projets, setProjets] = useState<Projet[]>([]);
