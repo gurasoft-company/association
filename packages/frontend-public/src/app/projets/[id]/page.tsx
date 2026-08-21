@@ -165,7 +165,7 @@ export default function ProjetDetail() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 100vw"
-                  unoptimized={src.includes('localhost') || src.includes('/uploads')}
+                 unoptimized={src.includes('/uploads')}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.src = defaultImages[0];
