@@ -46,8 +46,8 @@ COPY --from=builder /app/.next/standalone ./
 # ✅ Copier le static
 COPY --from=builder /app/.next/static ./.next/static
 
-# ✅ Copier public s'il existe
-COPY --from=builder /app/public ./public
+# ❌ SUPPRIMER CETTE LIGNE
+# COPY --from=builder /app/public ./public
 
 RUN chown -R nextjs:nodejs /app
 
