@@ -9,7 +9,6 @@ WORKDIR /app
 
 COPY package*.json ./
 
-# ✅ Remplacer npm ci par npm install
 RUN npm install && npm cache clean --force
 
 # ============================================
@@ -26,8 +25,7 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
-# ✅ Une seule commande de build avec webpack
-RUN npm run build -- --webpack
+RUN npm run build
 
 # ============================================
 #  ÉTAPE 3 : PRODUCTION
@@ -42,11 +40,14 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# ❌ SUPPRIMER CETTE LIGNE (dossier public n'existe pas dans standalone)
-# COPY --from=builder /app/public ./public
-
+# ✅ Copier le standalone
 COPY --from=builder /app/.next/standalone ./
+
+# ✅ Copier le static
 COPY --from=builder /app/.next/static ./.next/static
+
+# ✅ Copier public s'il existe
+COPY --from=builder /app/public ./public
 
 RUN chown -R nextjs:nodejs /app
 
