@@ -28,7 +28,7 @@ ENV NODE_ENV production
 RUN npm run build
 
 # ============================================
-#  ÉTAPE 3 : PRODUCTION
+#  ÉTAPE 3 : PRODUCTION (Runner)
 # ============================================
 FROM node:22-alpine AS runner
 
@@ -40,7 +40,13 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
+# ✅ Copier le dossier public
+COPY --from=builder /app/public ./public
+
+# ✅ Copier le standalone
 COPY --from=builder /app/.next/standalone ./
+
+# ✅ Copier le static
 COPY --from=builder /app/.next/static ./.next/static
 
 RUN chown -R nextjs:nodejs /app
@@ -49,4 +55,5 @@ USER nextjs
 
 EXPOSE 3000
 
+# ✅ Démarrer avec node server.js (pas npm start)
 CMD ["node", "server.js"]
