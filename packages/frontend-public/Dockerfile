@@ -53,6 +53,9 @@ RUN chown -R nextjs:nodejs /app
 
 USER nextjs
 
+# ✅ CRUCIAL : forcer l'écoute sur toutes les interfaces réseau
+ENV HOSTNAME=0.0.0.0
+
 EXPOSE 3000
 
 # ✅ Démarrer avec node server.js (pas npm start)
